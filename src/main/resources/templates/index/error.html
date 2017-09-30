@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>错误页面</title>
+<script type="text/javascript" src="/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="/js/jquery.md5.js"></script>
+<link rel="Stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+这是一个错误页面
+   <div th:if="${errorCode} == 400">你好像发送了一个错误请求，服务器返回400啦</div>
+   <div th:if="${errorCode} == 401">不好意思，你好像没有权限</div>
+   <div th:if="${errorCode} == 500">服务器好像出了什么问题，赶紧找管理员查看日志</div>
+   <div th:if="${errorCode} == 404">不好意思，这个页面还没做啦</div>
+</body>
+</html>

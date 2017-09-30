@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+    <!--<springProperty scope="context" name="flumePort" source="flume.port"/>-->
+    <!--<springProperty scope="context" name="flumeHost" source="flume.host"/>-->
+    <!--<springProperty scope="context" name="flumeErrorPort" source="flume.error.port"/>-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | [%thread] | %-5level | %logger{64} | %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="brokerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <File>${LOG_DIR}/broker-app.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>
+                <fileNamePattern>${LOG_DIR}/history/%d{yyyy-MM,aux}/broker-app.log_%d</fileNamePattern>
+            </fileNamePattern>
+            <maxHistory>90</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | [%thread] | %-5level | %logger{64} | %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">-->
+        <!--<syslogHost>${flumeHost}</syslogHost>-->
+        <!--<port>${flumePort}</port>-->
+        <!--<facility>LOCAL1</facility>-->
+        <!--<suffixPattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | [%thread] | %-5level | %logger{64} | %msg%n</suffixPattern>-->
+    <!--</appender>-->
+    
+    <!--<appender name="SYSLOGERROR" class="ch.qos.logback.classic.net.SyslogAppender">-->
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+            <!--<level>ERROR</level>-->
+        <!--</filter>-->
+        <!--<syslogHost>${flumeHost}</syslogHost>-->
+        <!--<port>${flumeErrorPort}</port>-->
+        <!--<facility>LOCAL1</facility>-->
+        <!--<suffixPattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | [%thread] | %-5level | %logger{64} | %msg%n</suffixPattern>-->
+    <!--</appender>-->
+
+    <appender name="brokerErrorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+
+        <File>${LOG_DIR}/broker-app.error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_DIR}/history/%d{yyyy-MM,aux}/%d.broker-app.error.log
+            </FileNamePattern>
+            <maxHistory>90</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | [%thread] | %-5level | %logger{64} | %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="brokerWarnAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+
+        <File>${LOG_DIR}/broker-app.warn.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_DIR}/history/%d{yyyy-MM,aux}/%d.broker-app.warn.log
+            </FileNamePattern>
+            <maxHistory>90</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} | [%thread] | %-5level | %logger{64} | %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+     <root level="INFO">
+         <!--<appender-ref ref="SYSLOG" />-->
+         <!--<appender-ref ref="SYSLOGERROR" />-->
+         <appender-ref ref="brokerAppender" />
+         <appender-ref ref="brokerErrorAppender" />
+         <appender-ref ref="brokerWarnAppender" />
+         <appender-ref ref="STDOUT" />
+     </root>
+</configuration>
+

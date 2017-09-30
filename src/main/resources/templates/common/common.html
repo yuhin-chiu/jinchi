@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>管理后台</title>
+<th:block th:fragment="header">
+   <meta charset="utf-8" />
+   <script type="text/javascript" src="/js/jquery-3.2.0.min.js"></script>
+   <script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
+   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="/js/moment.min.js"></script>
+   <script type="text/javascript" src="/js/daterangepicker.js"></script>
+   <script type="text/javascript"
+      src="/js/bootstrap-datetimepicker.min.js"></script>
+   <script type="text/javascript" src="/js/xcConfirm.js"></script>
+   <script type="text/javascript" src="/js/jquery.md5.js"></script>
+   <script type="text/javascript" src="/js/jquery-form.js"></script>
+   <script type="text/javascript" src="/js/main.js"></script>
+   <script type="text/javascript" src="/js/timeUtil.js"></script>
+   <script type="text/javascript" src="/js/bootstrap-table.js"></script>
+   <script type="text/javascript" src="/js/base-table.js"></script>
+   <link rel="Stylesheet" type="text/css" href="/css/main.css" />
+   <link rel="Stylesheet" type="text/css" href="/css/chosen.css" />
+   <link rel="Stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+   <link rel="Stylesheet" type="text/css"
+      href="/css/daterangepicker.css" />
+   <link rel="Stylesheet" type="text/css"
+      href="/css/daterangepicker-bs3.css" />
+   <link rel="Stylesheet" type="text/css" href="/css/xcConfirm.css" />
+   <link rel="Stylesheet" type="text/css"
+      href="/css/bootstrap-table.css" />
+
+   <link rel="stylesheet" href="/css/bootstrap-table.css"></link>
+   <script src="/js/bootstrap-table.js"></script>
+
+</th:block>
+</head>
+<body>
+   <th:block th:fragment="toolbar">
+      <div id="header-bar" class="navbar-fixed-top">
+         <div class="header-top"></div>
+         <div class="header-content">
+            <div class="header-main main">
+               <div class="logo f-left"></div>
+               <div class="h-item f-right others">
+                  <span>其他</span>
+               </div>
+               <span class="f-left"
+                  style="margin-top: 40px; margin-left: 10px; color: white">
+                  <span th:text="${admin.userName}"></span> <a
+                  href="/backend/logout" style="color: white">退出</a>
+               </span>
+               <div class="clear"></div>
+            </div>
+         </div>
+      </div>
+   </th:block>
+   <th:block th:fragment="news">
+      <div class="main">
+         <div class="tag-list">
+            <a href="javascript:void(0);"><span class="list"></span></a>
+            <a href="javascript:void(0);"><span class="publish"></span></a>
+         </div>
+      </div>
+   </th:block>
+
+   <th:block th:fragment="footer">
+      <div id="footer" class="navbar-fixed-bottom">^_^ ^_^ ^_^ ^_^
+         ^_^ ^_^ ^_^</div>
+   </th:block>
+</body>
+</html>
