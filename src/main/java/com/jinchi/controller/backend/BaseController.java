@@ -51,7 +51,7 @@ public class BaseController {
         }
         return "/index/login";
     }
-    
+
     @RequestMapping("/test")
     public String upload() {
         return "/index/upload";

@@ -43,7 +43,6 @@ public class AdminOperationAspect {
             throw new UserLoginException();
         } else {
             AdminInfoHolder.setAdmin(admin);
-            System.out.println("before....");
         }
 
         try {

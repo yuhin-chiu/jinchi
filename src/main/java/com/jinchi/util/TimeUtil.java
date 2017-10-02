@@ -14,22 +14,25 @@ import java.util.Map;
 
 public class TimeUtil {
 
-    private static final ThreadLocal<Map<String, SimpleDateFormat>> threadLocal = new ThreadLocal<Map<String, SimpleDateFormat>>() {
+    private static final ThreadLocal<SimpleDateFormat> timeFormatter = new ThreadLocal<SimpleDateFormat>() {
         @Override
-        protected Map<String, SimpleDateFormat> initialValue() {
-            Map<String, SimpleDateFormat> map = new HashMap<String, SimpleDateFormat>();
-            map.put("FORMATER_TIME", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-            map.put("FORMATER_DAY", new SimpleDateFormat("yyyy-MM-dd"));
-            return map;
+        protected SimpleDateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        }
+    };
+    private static final ThreadLocal<SimpleDateFormat> dayFormatter = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd");
         }
     };
 
     private static SimpleDateFormat getTimeFormat() {
-        return threadLocal.get().get("FORMATER_TIME");
+        return timeFormatter.get();
     }
 
     private static SimpleDateFormat getDayFormat() {
-        return threadLocal.get().get("FORMATER_DAY");
+        return dayFormatter.get();
     }
 
     // 获取当前的时间秒数
@@ -104,8 +107,9 @@ public class TimeUtil {
         }
         return new Long[] { -1L, -1L };
     }
+
     // 很多情况最后一天也要查
-    public static Long[] splitDayRangeBig(String dayRange){
+    public static Long[] splitDayRangeBig(String dayRange) {
         try {
             String beginTimeStr = dayRange.substring(0, 10);
             String endTimeStr = dayRange.substring(dayRange.length() - 10);
